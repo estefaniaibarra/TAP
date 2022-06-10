@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Proyecto.ViewModel"
+             x:Class="Ejemplo.Views.InicioView">
+    <ContentPage.BindingContext>
+        <vm:GaleriaViewModel x:Name="vmga"></vm:GaleriaViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems  >
+
+        <ToolbarItem  Command="{Binding CambiarVistaCommand}" CommandParameter="Agregar" IconImageSource="https://cdn.icon-icons.com/icons2/1146/PNG/128/1486485561-23add-folder-storage-file-storage-data-storage-plus_81165.png">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView BackgroundColor="white">
+        <FlexLayout VerticalOptions="Start" AlignContent="Start" Direction="Row" Wrap="Wrap" BindableLayout.ItemsSource="{Binding ListaGaleria}">
+            <FlexLayout.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="TextColor" Value="#ff50de"></Setter>
+                    <Setter Property="FontFamily" Value="Arial"></Setter>
+                </Style>
+            </FlexLayout.Resources>
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+
+                    <Frame WidthRequest="200" Margin="5" Padding="0" BackgroundColor="Transparent" VerticalOptions="Center" HeightRequest="220" FlexLayout.Basis="50%">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={x:Reference vmga}, Path=DetallesCommand}" CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </Frame.GestureRecognizers>
+                        <StackLayout Margin="12">
+                            <Frame BorderColor="Black"  Padding="5" IsClippedToBounds="True" >
+                                <Image WidthRequest="300" HeightRequest="150" Aspect="Fill" Source="{Binding Imagen}"></Image>
+
+                            </Frame>
+                            <Frame  Padding="10" CornerRadius="9" BackgroundColor="Transparent" >
+                                <FlexLayout JustifyContent="SpaceBetween"  AlignItems="Center" >
+                                    <StackLayout >
+                                        <Label TextTransform="Uppercase" FontAttributes="Bold" Text="{Binding Nombre}"></Label>
+                                    </StackLayout>
+                                </FlexLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+    </ScrollView>
+</ContentPage>

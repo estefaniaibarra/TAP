@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ejemplo.Views.AgregarView">
+    <ScrollView Orientation="Vertical"  BackgroundColor="White">
+        <StackLayout>
+            <Image Margin="0,10" Source="https://cdn.icon-icons.com/icons2/1492/PNG/512/art-pallete_102830.png"></Image>
+            <StackLayout Margin="20">
+                <StackLayout.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="TextColor" Value="Black"></Setter>
+                        <Setter Property="FontFamily" Value="PPN"></Setter>
+                    </Style>
+                    <Style TargetType="Entry">
+                        <Setter Property="PlaceholderColor" Value="Black"></Setter>
+                        <Setter Property="TextColor" Value="Black"></Setter>
+                    </Style>
+                </StackLayout.Resources>
+                <Label>Nombre de la obra</Label>
+                <Entry Text="{Binding Galeria.Nombre}"></Entry>
+
+                <Label>Autor</Label>
+                <Entry Text="{Binding Galeria.Autor}"></Entry>
+
+                <Label>Precio</Label>
+                <Entry Keyboard="Numeric"  Text="{Binding Galeria.Precio}" ></Entry>
+
+                <Label>Url de la imagen</Label>
+                <Entry Placeholder="http:imagen.png" Text="{Binding Galeria.Imagen}"></Entry>
+                <Button Margin="0, 20" BackgroundColor="#ff50de" FontAttributes="Bold" TextColor="#000" Text="Agregar" CornerRadius="4" Command="{Binding AgregarCommand}"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Proyecto.ViewModel"
+             x:Class="Ejemplo.Views.DetallesView">
+    <ContentPage.BindingContext>
+        <vm:GaleriaViewModel x:Name="vmga"></vm:GaleriaViewModel>
+    </ContentPage.BindingContext>
+    <FlexLayout BackgroundColor="White" Direction="Column" >
+
+
+        <FlexLayout.Resources>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black"></Setter>
+                <Setter Property="FontFamily" Value="Adaminaregular"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+            </Style>
+        </FlexLayout.Resources>
+
+
+        <Frame Padding="0" >
+            <StackLayout BackgroundColor="White">
+                <Image Source="{Binding Galeria.Imagen}" Aspect="Fill" HeightRequest="470" Opacity="0.8" />
+                  </StackLayout>
+        </Frame>
+        <StackLayout >
+
+            <Frame Margin="10, -10" HeightRequest="250" BackgroundColor="#ebebf3" CornerRadius="20">
+                <StackLayout>
+                    <FlexLayout AlignContent="Center" JustifyContent="SpaceAround" >
+                        <Label FontSize="23" TextTransform="Uppercase" TextColor="#ff50de" FlexLayout.AlignSelf="Center" Text="{Binding Galeria.Nombre}" FontAttributes="Bold" Margin="0,10"></Label>
+                        
+                    </FlexLayout>
+                    <FlexLayout Margin="14" Direction="Column">
+                        <Label Text="{Binding Galeria.Autor}" Margin="0, 0,0,10"></Label>
+                        <Label Text="{Binding Galeria.Precio, StringFormat='${0:F0}'}"></Label>
+                    </FlexLayout>
+                    <FlexLayout Margin="14" JustifyContent="SpaceBetween">
+                        <Button Text="Editar" Margin="10, 10, 10, 0" Command="{Binding VerEditarCommand}" BorderWidth="1" BorderColor="#ff50de" CommandParameter="{Binding Galeria }" CornerRadius="12" BackgroundColor="White" WidthRequest="200" HeightRequest="70" Padding="10" VerticalOptions="EndAndExpand"></Button>
+                        <Button Text="Eliminar" Margin="10, 10, 0, 0" Command="{Binding EliminarCommand}" CommandParameter="{Binding Galeria}" BorderWidth="1" TextColor="White" BorderColor="#ff50de" CornerRadius="12" BackgroundColor="#ff50de"  WidthRequest="200" HeightRequest="70" Padding="10" VerticalOptions="EndAndExpand"></Button>
+                    </FlexLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </FlexLayout>
+</ContentPage>
